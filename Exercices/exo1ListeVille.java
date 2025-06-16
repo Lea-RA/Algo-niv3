@@ -62,7 +62,7 @@ public class exo1ListeVille {
 
         printList(cities);
 
-        while(true) {
+        while (true) {
 
             choose(cities, greets);
             boolean visit = questionYesNo("Voulez-vous visiter une autre ville ? (O/N)\n");
@@ -72,12 +72,13 @@ public class exo1ListeVille {
             }
         }
 
-        System.out.println("\nVotre voyage est terminé !\n");    
+        System.out.println("\nVotre voyage est terminé !\n");
+        sc.close();    
     }
 
     // Méthode permettant de poser une question à choix fermé
     public static boolean questionYesNo(String question) { 
-        
+
         while (true) {
             System.out.print(question);
 
@@ -109,7 +110,7 @@ public class exo1ListeVille {
     // Méthode demandant un numéro affichant un message correspondant entre deux listes
     public static void choose(String[] city, String[] greet) {
 
-        while(true) {
+        while (true) {
             try {
                 int choose = Integer.parseInt(sc.nextLine());
 
