@@ -80,6 +80,7 @@ public class exo1ListeVille {
     public static boolean questionYesNo(String question) { 
 
         while (true) {
+            
             System.out.print(question);
 
             try {
