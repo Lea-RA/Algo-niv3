@@ -1,14 +1,25 @@
 import java.util.*;
 
 public class JalonCDA {
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+        /*int choice;
 
-        boolean inUse = true;
+        do {
+            JalonMethods.displayMenu();
+            System.out.println("Votre choix : ");
+            choice = Integer.parseInt(scanner.nextLine());
 
-        main:while (inUse) {
+            switch (choice) {
+
+            }
+        } while (choice != 0);
+
             
-        }
+        }*/
+
+        JalonMethods.chooseConsultType();
         
     }
-
 }
+
