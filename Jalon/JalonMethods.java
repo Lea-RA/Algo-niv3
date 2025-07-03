@@ -161,6 +161,13 @@ public class JalonMethods {
             System.out.println("Les consultations ne sont pas disponibles le week-end.");
             return false;
         }
+        
+        // Vérifie si la date est un jour férié
+        LocalDate date = start.toLocalDate(); // Récupère la date de la consultation
+        if (getHolidays(date.getYear()).contains(date)) {
+            System.out.println("Les consultations ne sont pas disponibles les jours fériés.");
+            return false; 
+        }
 
         LocalTime timeStart = start.toLocalTime(); // Récupère l'heure de début de la consultation
         LocalTime timeEnd = timeStart.plusMinutes(durationMinutes); // Calcule l'heure de fin de la consultation
@@ -191,6 +198,8 @@ public class JalonMethods {
         holidays.add(easter.plusDays(1)); // Lundi de Pâques
         holidays.add(easter.plusDays(39)); // Ascension (40 jours après Pâques)
         holidays.add(easter.plusDays(49)); // Pentecôte (50 jours après Pâques)
+
+        return holidays; // Retourne l'ensemble des jours fériés
     }
 
 
