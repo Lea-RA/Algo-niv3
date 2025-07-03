@@ -173,6 +173,50 @@ public class JalonMethods {
 
 
 
+    public static Set<LocalDate> getHolidays(int years) {
+        Set<LocalDate> holidays = new HashSet<>(); // Ensemble pour stocker les jours fériés
+
+        // Jours fixes
+        holidays.add(LocalDate.of(years, 1, 1)); // Jour de l'An
+        holidays.add(LocalDate.of(years, 5, 1)); // Fête du travail
+        holidays.add(LocalDate.of(years, 5, 8)); // Fête de la victoire
+        holidays.add(LocalDate.of(years, 7, 14)); // Fête nationale
+        holidays.add(LocalDate.of(years, 8, 15)); // Assomption
+        holidays.add(LocalDate.of(years, 11, 1)); // Toussaint
+        holidays.add(LocalDate.of(years, 11, 11)); // Armistice
+        holidays.add(LocalDate.of(years, 12, 25)); // Noël
+
+        // Jours mobiles (Pâques, Ascension, Pentecôte)
+        LocalDate easter = getEaster(years); // Calcule la date de Pâques
+        holidays.add(easter.plusDays(1)); // Lundi de Pâques
+        holidays.add(easter.plusDays(39)); // Ascension (40 jours après Pâques)
+        holidays.add(easter.plusDays(49)); // Pentecôte (50 jours après Pâques)
+    }
+
+
+
+    public static LocalDate getEaster(int year) {
+        // Calcule la date de Pâques pour une année donnée
+        int a = year % 19;
+        int b = year / 100;
+        int c = year % 100;
+        int d = b / 4;
+        int e = b % 4;
+        int f = (b + 8) / 25;
+        int g = (b - f + 1) / 16;
+        int h = (19 * a + b - d - g + 15) % 30;
+        int i = c / 16;
+        int j = c % 16;
+        int k = (32 + 2 * e + 2 * i - h - j) % 7;
+
+        int month = (h + k + 90) / 25; // Mois de Pâques
+        int day = (h + k + month * 31) % 31 + 1; // Jour de Pâques
+
+        return LocalDate.of(year, month, day); // Retourne la date de Pâques
+    }
+
+
+
     public static boolean cancelOverlap(LocalDateTime start, int durationMinutes) {
         // Vérifie si la date de la consultation n'est pas en conflit avec une autre consultation
         LocalDateTime end = start.plusMinutes(durationMinutes); // Calcule l'heure de fin de la consultation
